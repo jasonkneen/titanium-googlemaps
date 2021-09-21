@@ -114,11 +114,13 @@
   id origin = [params objectForKey:@"origin"];
   id destination = [params objectForKey:@"destination"];
   id waypoints = [params objectForKey:@"waypoints"];
+  id mode = [params objectForKey:@"mode"];
 
   ENSURE_TYPE(successCallback, KrollCallback);
   ENSURE_TYPE(errorCallback, KrollCallback);
   ENSURE_TYPE(origin, NSString);
   ENSURE_TYPE(destination, NSString);
+  ENSURE_TYPE(mode, NSString);
   ENSURE_TYPE_OR_NIL(waypoints, NSArray);
 
   TiGMSHTTPClient *httpClient = [[TiGMSHTTPClient alloc] initWithApiKey:_apiKey];
@@ -126,6 +128,7 @@
   NSMutableDictionary *options = [NSMutableDictionary dictionaryWithDictionary:@{
     @"origin" : origin,
     @"destination" : destination,
+    @"mode" : mode
   }];
 
   if (waypoints) {
